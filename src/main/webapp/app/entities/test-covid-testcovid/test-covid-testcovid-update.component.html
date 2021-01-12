@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-test-covid-testcovid-heading" jhiTranslate="covtestApp.testCovid.home.createOrEditLabel">Create or edit a Test Covid</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="covtestApp.testCovid.positive" for="field_positive">Positive</label>
+                    <input type="checkbox" class="form-control" name="positive" id="field_positive"
+                           formControlName="positive"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="covtestApp.testCovid.dateTest" for="field_dateTest">Date Test</label>
+                    <div class="d-flex">
+                        <input id="field_dateTest" type="datetime-local" class="form-control" name="dateTest" formControlName="dateTest" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="covtestApp.testCovid.resulatTest" for="field_resulatTest">Resulat Test</label>
+                    <div>
+                        <div *ngIf="editForm.get('resulatTest')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('resulatTestContentType')!.value, editForm.get('resulatTest')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('resulatTestContentType')!.value }}, {{ byteSize(editForm.get('resulatTest')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({resulatTest: null});editForm.patchValue({resulatTestContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_resulatTest" (change)="setFileData($event, 'resulatTest', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="resulatTest" id="field_resulatTest"
+                           formControlName="resulatTest"/>
+                    <input type="hidden" class="form-control" name="resulatTestContentType" id="field_resulatTestContentType"
+                           formControlName="resulatTestContentType" />
+                    <div *ngIf="editForm.get('resulatTest')!.invalid && (editForm.get('resulatTest')!.dirty || editForm.get('resulatTest')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('resulatTest')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="covtestApp.testCovid.secretKey" for="field_secretKey">Secret Key</label>
+                    <input type="text" class="form-control" name="secretKey" id="field_secretKey"
+                           formControlName="secretKey"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="covtestApp.testCovid.recupered" for="field_recupered">Recupered</label>
+                    <input type="checkbox" class="form-control" name="recupered" id="field_recupered"
+                           formControlName="recupered"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="covtestApp.testCovid.personne" for="field_personne">Personne</label>
+                    <select class="form-control" id="field_personne" name="personne" formControlName="personneId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="personneOption.id" *ngFor="let personneOption of personnes; trackBy: trackById">{{ personneOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

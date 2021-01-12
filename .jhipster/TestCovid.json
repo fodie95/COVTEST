@@ -1,0 +1,49 @@
+{
+  "name": "TestCovid",
+  "fields": [
+    {
+      "fieldName": "positive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dateTest",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "resulatTest",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "secretKey",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "recupered",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "personne",
+      "otherEntityRelationshipName": "testCovid",
+      "relationshipName": "personne",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210112194341",
+  "entityTableName": "test_covid",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*",
+  "searchEngine": "elasticsearch",
+  "angularJSSuffix": "testcovid"
+}

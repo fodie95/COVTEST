@@ -1,0 +1,38 @@
+entity Personne{
+nom String ,
+prenom String ,
+nni String unique ,
+Tel String unique ,
+whatsapp String unique,
+email String unique ,
+adresse  String 
+}
+
+entity TestCovid {
+ positive Boolean ,
+ dateTest Instant,
+ resulatTest Blob required,
+ secretKey String, //code a envoyé a la personne qui a fait le test covid 
+ recupered Boolean
+ }
+
+relationship  ManyToOne{
+ TestCovid{personne} to Personne
+}
+
+
+
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+//search all with elasticseache
+search * with elasticsearch
+// Set an angular suffix
+ angularSuffix * with testcovid
+
