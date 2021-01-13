@@ -1,0 +1,28 @@
+{
+  "covtestApp": {
+    "testCovid": {
+      "home": {
+        "title": "TestCovids",
+        "createLabel": "Créer un nouveau Test Covid",
+        "createOrEditLabel": "Créer ou éditer un Test Covid",
+        "search": "Recherche pour Test Covid",
+        "notFound": "Aucun Test Covid trouvé"
+      },
+      "created": "Un nouveau Test Covid a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Test Covid avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Test Covid avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Test Covid {{ id }} ?"
+      },
+      "detail": {
+        "title": "Test Covid"
+      },
+      "positive": "Positive",
+      "dateTest": "Date Test",
+      "resulatTest": "Resulat Test",
+      "secretKey": "Secret Key",
+      "recupered": "Recupered",
+      "personne": "Personne"
+    }
+  }
+}

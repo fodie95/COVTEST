@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="testCovid">
+            <h2><span jhiTranslate="covtestApp.testCovid.detail.title">Test Covid</span> {{ testCovid.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="covtestApp.testCovid.positive">Positive</span></dt>
+                <dd>
+                    <span>{{ testCovid.positive }}</span>
+                </dd>
+                <dt><span jhiTranslate="covtestApp.testCovid.dateTest">Date Test</span></dt>
+                <dd>
+                    <span>{{ testCovid.dateTest }}</span>
+                </dd>
+                <dt><span jhiTranslate="covtestApp.testCovid.resulatTest">Resulat Test</span></dt>
+                <dd>
+                    <div *ngIf="testCovid.resulatTest">
+                        <a (click)="openFile(testCovid.resulatTestContentType, testCovid.resulatTest)" jhiTranslate="entity.action.open">open</a>
+                        {{ testCovid.resulatTestContentType }}, {{ byteSize(testCovid.resulatTest) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="covtestApp.testCovid.secretKey">Secret Key</span></dt>
+                <dd>
+                    <span>{{ testCovid.secretKey }}</span>
+                </dd>
+                <dt><span jhiTranslate="covtestApp.testCovid.recupered">Recupered</span></dt>
+                <dd>
+                    <span>{{ testCovid.recupered }}</span>
+                </dd>
+                <dt><span jhiTranslate="covtestApp.testCovid.personne">Personne</span></dt>
+                <dd>
+                    <div *ngIf="testCovid.personneId">
+                        <a [routerLink]="['/personne-testcovid', testCovid.personneId, 'view']">{{ testCovid.personneId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/test-covid-testcovid', testCovid.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
