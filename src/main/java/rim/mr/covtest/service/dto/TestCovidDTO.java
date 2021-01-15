@@ -13,6 +13,15 @@ public class TestCovidDTO implements Serializable {
     private Boolean positive;
 
     private Instant dateTest;
+    private String reference;
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
 
     private byte[] resulatTest;
 

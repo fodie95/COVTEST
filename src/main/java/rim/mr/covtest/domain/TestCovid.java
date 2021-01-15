@@ -24,6 +24,9 @@ public class TestCovid implements Serializable {
     @Field("positive")
     private Boolean positive;
 
+    @Field("reference")
+    private String reference;
+
     @Field("date_test")
     private Instant dateTest;
 
@@ -43,6 +46,16 @@ public class TestCovid implements Serializable {
     @Field("personne")
     @JsonIgnoreProperties(value = "testCovids", allowSetters = true)
     private Personne personne;
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public TestCovid() {}
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public String getId() {
